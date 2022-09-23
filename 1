@@ -1,0 +1,32 @@
+/* 1. Seja o seguinte trecho de programa:
+int i=3,j=5;
+int *p, *q;
+p = &i;
+q = &j;
+
+Determine o valor das seguintes expressões:
+p == &i;
+*p - *q;
+**&p;
+3 - *p/(*q) + 7;
+*/
+
+/* CÓDIGO */
+#include <stdio.h>
+
+int main(void) {
+  int i = 3, j = 5;
+  int *p, *q, a;
+  p = &i;
+  q = &j;
+  a = **&p;
+  printf("p = %d; q = %d; a = %d\n", *p, *q, a);
+  return 0;
+}
+
+/*RESPOSTAS:
+a) 1.
+b) -2.
+c) 3.
+d) 10.
+*/
