@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main() {
+    // definição de variáveis
+    int **x; 
+    int lines = 8, column = 8, aux = 0;
+    unsigned long long int sum = 0;
+    
+    // alocando espaços de memória
+    x    = (int**) malloc(lines * sizeof(int*));
+    x[0] = (int*) malloc(lines * column * sizeof(int*));
+    
+    for(int i = 1; i < lines; i++) {
+        x[i] = x[i - 1] + column;
+    }
+    
+    // input da matriz quadrada
+    for(int i = 0; i < lines; i++) {
+        for(int j = 0; j < column; j++) {
+            scanf("%d ", &x[i][j]);
+        }
+    }
+    
+    // output da sequencia de bytes
+    printf("Saída da sequência de bytes:\n");
+    for(int i = 0; i < lines; i++) {
+        for(int j = 0; j < column; j++) {
+            printf("%d", x[i][j]);
+        }
+        printf(" ");
+    }
+    
+    // soma dos bytes
+    printf("\n\nSoma dos bytes:");
+    for(int i = lines - 1; i >= 0; i--) {
+        for(int j = column - 1; j >= 0; j--) {
+            if(x[i][j] == 1) {
+                sum += pow(2, aux);
+            }
+            aux += 1;
+        }
+        printf("\n%llu", sum);
+    }
+    
+    // liberação do espaço alocado
+    free(x[0]);
+    free(x);
+    
+    return 0;
+}

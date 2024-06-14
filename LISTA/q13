@@ -1,0 +1,49 @@
+/* 13. Implemente em linguagem C uma função em um programa de computador que leia n valores do tipo float e os apresente em ordem crescente. Utilize alocação dinâmica de memória para
+realizar a tarefa. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int i, j;
+float x;
+
+
+//função para organizar em ordem crescente
+void ordemc(float *elemento, int size){
+  for (i=0; i < size; i++){
+    for (j=0; j < size; j++){
+      if (elemento[i] < elemento[j]){
+        x = elemento[i];
+        elemento[i] = elemento[j];
+        elemento[j] = x;
+      }
+    }
+  }
+
+  // imprime o vetor em ordem crescente
+  for (i= 0; i < size ;i++){
+    printf("%f ", elemento[i]);
+  }
+}
+
+
+
+int main(){
+  float *elementos;
+  int size;
+
+  //pega a quantidade de elementos do usuario
+  printf("Quantos elementos para ordenar? ");
+  scanf("%d", &size);
+
+  elementos = malloc(size * sizeof(float));
+
+// pega os valores dos elementos do usuario
+  for (i=0; i < size ;i++){
+    printf("Digite o valor %i: ", i+1);
+    scanf("%f", &elementos[i]);
+  }
+  ordemc(elementos, size);
+  free(elementos); // libera a memória
+  return 0;
+}

@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main(void) {
+  int *px, x, y;
+  x = 2;
+  px = &x;
+  y = *px;
+  printf("y = %d\n", *px);
+  printf("px = %p\n", px);
+  printf("px = %ld\n", px);
+}

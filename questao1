@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+void printbyte(unsigned char c){
+  unsigned char i;
+  unsigned char and;
+  for(i = 128; i > 0; i = i >> 1){
+    and = i & c;
+    if(and){
+      printf("1");
+    }
+    else{
+      printf("0");
+    }
+  }
+}
+
+
+
+int main() {
+  //variáveis
+  int i, j;
+  int **m; //ponteiro para ponteiro da matriz
+  int linha = 8, coluna = 8, auxiliar = 0; //tamanho da matriz 
+  unsigned long long int soma = 0; // variável com um tamanho maior de bits
+
+  //matriz auxiliar
+  m = (int**) malloc(linha*sizeof(int*)); //aloco memoria para a matriz auxiliar
+
+  //linhas matriz
+  for(int i=0; i < linha; i++){
+    m[i] = (int*)malloc(coluna*sizeof(int)); //aloco memoria para os valores
+  }
+
+  //crio um recebimento para o usuário digitar os valores da matriz
+  for(int i = 0; i < linha; i++) {
+      for(int j = 0; j < coluna; j++) {
+          printf ("\nElemento[%d][%d] = ", i, j);
+          scanf("%d ", &m[i][j]);
+      }
+  }
+
+  //imprimo a matriz
+  for(int i = 0; i < linha; i++) {
+      for(int j = 0; j < coluna; j++) {
+          printf("%d", m[i][j]);
+      }
+      printf("  ");
+  }
+
+  
+      unsigned long long int state = 0;
+      unsigned char* p;
+      p = &state;
+
+   for (i = 7; i >= 0; i--) {// agora, escrevo os valores da matriz nos bits de "state"
+        unsigned long long int temp = 0; //inicializo uma variavel temporaria para guardar os valores de cada linha da matriz como sendo um inteiro de 8 bytes
+
+        for (j = 7; j >= 0; j--) {
+            temp += ((unsigned long long)(m[i][j])) << 7 - j; //leio cada elemento da linha atual da matriz da direita para a direita, e vou somando à "res", deslocando os bits pela quantidade necessaria para ir escrevendo-os na posicao correspondente ao que se tinha na matriz.
+        }
+
+        state += temp << 8*(7 - i); //escrevo os bits de temp em state, deslocando-os pela quantidade necessaria para alinhar a sequencia.
+    }
+
+ 
+
+  
+  //liberando memoria alocada
+    free(m[0]); //libero a mamemoria dos valores
+    free(m); //libero a memoria do bloco auxiliar
+
+     printf("|");
+    for (i = 7; i >= 0; i--) { //imprimo cada byte da variavel state por meio de seu ponteiro.
+        printbyte(p[i]);
+        printf("|");
+    }
+
+  return 0;
+}

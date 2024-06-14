@@ -1,0 +1,30 @@
+/* 3. Se i e j são variáveis inteiras e p e q ponteiros para int, quais das seguintes expressões de atribuição são ilegais?
+p = i;
+q = &j;
+p = &*&i;
+i = (*&)j;
+i = *&j;
+i = *&*&j;
+q = *p;
+i = (*p)++ + *q;
+*/
+
+// CÓDIGO QUE USEI PARA TESTAR
+#include <stdio.h>
+
+int main(void) {
+  int i = 3, j = 5;
+  int *p, *q;
+  p = &i;
+  q = &j;
+  i = (*p)++ + *q;
+  printf("p = %d; q = %d; a = %d; i = %d\n", *p, *q, i);
+  return 0;
+}
+
+/* RESPOSTAS 
+São ilegais:
+p = i;
+i = (*&)j;
+q = *p;
+*/

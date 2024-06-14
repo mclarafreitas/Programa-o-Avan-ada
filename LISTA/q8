@@ -1,0 +1,29 @@
+/*
+#include <stdio.h>
+
+int main(){
+  int vet[] = {4,9,13};
+  int i;
+  for(i=0;i<3;i++){
+  printf("%d ",*(vet+i));
+  }
+}
+\*
+/*Resolução:
+No programa é dado uma variavel int na qual é um vetor e tem seus valores já colocados, depois é declarado um int para ser utilizado no for no qual é declarado como i=0 e só pode ter até 3 valores e dentro dele tem um printf que imprime vet+i, no qual imprime todos os valores do vetor.
+
+*/
+
+#include <stdio.h>
+
+int main(){
+  int vet[] = {4,9,13};
+  int i;
+  for(i=0;i<3;i++){
+  printf("%X ",vet+i);
+  }
+} 
+
+/*
+Mesma explicação da anterior, a diferença é que a saída está setada para Hexadecimal.
+*/
